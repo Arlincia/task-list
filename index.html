@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A To-Do list</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <style>
+    
+ 
+h1{
+    color: aliceblue;
+    background-color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+.container{
+    font-family: 'Times New Roman', Times, serif;
+    display: inline;
+    align-items: center;
+    margin:20px;
+    width: 50%;
+    padding: 10 50 10 50;
+     
+}
+
+.input-group{
+   
+    align-items: center;
+    width: 500px;
+    margin: auto;
+    
+}
+ul {
+     display: inline;
+     text-align: center;
+    list-style-type: none;
+    align-items: center;
+    margin: auto;
+    color: white;
+}
+li{
+    display: block;
+    list-style-type: none;
+    align-items: center;
+    color: white;
+}
+.tasklist {
+    width: 100%;
+    max-width: 550px;
+    padding: 40px 30px 70px;
+    background:black;
+    border-radius: 10px;
+    margin: 100px auto 20px;
+}
+
+  </style>
+  <body style="background-image: url(desktop-wallpaper-▷-☺iphone-ios-7-tumblr-for-ipad-nike-for-iphone-thumbnail.jpg);">
+    <!-- Task List -->
+    <div class="container">
+        <div class="tasklist">
+            <h1>My To Do list:</h1>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="taskInput" placeholder="Enter New Task" aria-label="Enter New Task"
+                aria-describedby="button-addon2"id="input">
+            <button class="btn btn-light" type="button" id="addTaskButton" onclick="addTask()">Add</button>
+        </div>
+            <ul id="taskList"></ul>
+        </div>
+    </div>
+
+    </div> 
+    <script>
+        function addTask() {
+                let taskInput = document.getElementById("taskInput");
+                let taskList = document.getElementById("taskList");
+
+                if (taskInput.value.trim() !== "") {
+                    let listItem = document.createElement("li");
+                    let checkBox = document.createElement("input");
+                    let taskText = document.createTextNode(taskInput.value);
+                    let deleteButton = document.createElement("button");
+
+                    checkBox.type = "checkbox";
+                    deleteButton.textContent = "Remove";
+
+                    listItem.appendChild(checkBox);
+                    listItem.appendChild(taskText);
+                    listItem.appendChild(deleteButton);
+                    taskList.appendChild(listItem);
+
+                    taskInput.value = "";
+                }
+            }
+            let addTaskButton = document.getElementById("addTaskButton");
+               addTaskButton.addEventListener("click", addTask);
+
+
+               let taskList = document.getElementById("taskList");
+                taskList.addEventListener("click", function (event) {
+                    if (event.target.tagName === "BUTTON" && event.target.textContent === "Remove") {
+                        let listItem = event.target.parentElement;
+                        taskList.removeChild(listItem);
+                    }
+                });
+
+                taskList.addEventListener("change", function (event) {
+                        if (event.target.tagName === "INPUT" && event.target.type === "checkbox") {
+                            let listItem = event.target.parentElement;
+                            listItem.style.textDecoration = event.target.checked ? "line-through" : "none";
+                        }
+                    });
+            
+    </script>
+  </body>
+</html>
